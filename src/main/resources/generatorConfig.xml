@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+        <commentGenerator type="CustomRemarkGenerator">
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+        
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+	        connectionURL="jdbc:mysql://127.0.0.1:3306/lqy?serverTimezone=GMT%2B8&amp;characterEncoding=utf8"
+	        userId="root" 
+	        password="root">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.lqy.entity" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+		
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="com.lqy.mapper" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+		
+        <!--生成DaoMapper类存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lqy.mapper" targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <!-- 表信息 -->
+        <table tableName="user_info"
+        enableCountByExample="false" enableUpdateByExample="false" 
+        enableDeleteByExample="false" enableSelectByExample="false"
+        selectByExampleQueryId="false" >
+		<!-- 这个配置对使用了自增主键的，会在insert语句返回插入的主键信息 column的值需要修改-->
+        <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+    </context>
+</generatorConfiguration>
